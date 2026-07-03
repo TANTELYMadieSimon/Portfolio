@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane, FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane, FaLinkedin, FaGithub, FaFacebook, FaCheckCircle, FaSpinner } from "react-icons/fa";
 import { useState } from "react";
+import emailjs from '@emailjs/browser';
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -8,6 +9,7 @@ function Contact() {
     email: '',
     message: ''
   });
+  const [status, setStatus] = useState('idle'); // idle | sending | success | error
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,16 +21,37 @@ function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setFormData({ name: '', email: '', message: '' });
+    setStatus('sending');
+
+    // ✅ VOS VRAIS IDS EMAILJS
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    const templateParams = {
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+    };
+
+    emailjs.send(serviceId, templateId, templateParams, publicKey)
+      .then(() => {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      })
+      .catch((error) => {
+        console.error('Erreur:', error);
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 5000);
+      });
   };
 
   const contactInfo = [
     {
       icon: <FaEnvelope className="text-2xl" />,
       label: "Email",
-      value: "simonmadie2006@email.com",
-      href: "mailto:simonmadie2006@email.com"
+      value: "simonmadie2006@gmail.com",
+      href: "mailto:simonmadie2006@gmail.com"
     },
     {
       icon: <FaPhone className="text-2xl" />,
@@ -102,14 +125,29 @@ function Contact() {
             <div className="pt-8 border-t border-slate-700/50">
               <h4 className="font-semibold mb-4 text-slate-300">Suivez-moi</h4>
               <div className="flex gap-4">
-                <a href="#" className="p-3 bg-slate-800/50 hover:bg-cyan-500/20 hover:border-cyan-500/50 border border-slate-700/50 rounded-lg transition-all duration-300 hover:text-cyan-400">
+                <a 
+                  href="https://github.com/TANTELYMadieSimon" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-3 bg-slate-800/50 hover:bg-cyan-500/20 hover:border-cyan-500/50 border border-slate-700/50 rounded-lg transition-all duration-300 hover:text-cyan-400"
+                >
                   <FaGithub className="text-xl" />
                 </a>
-                <a href="#" className="p-3 bg-slate-800/50 hover:bg-cyan-500/20 hover:border-cyan-500/50 border border-slate-700/50 rounded-lg transition-all duration-300 hover:text-cyan-400">
+                <a 
+                  href="https://www.linkedin.com/in/simon-madie-a0b752379/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-3 bg-slate-800/50 hover:bg-cyan-500/20 hover:border-cyan-500/50 border border-slate-700/50 rounded-lg transition-all duration-300 hover:text-cyan-400"
+                >
                   <FaLinkedin className="text-xl" />
                 </a>
-                <a href="#" className="p-3 bg-slate-800/50 hover:bg-cyan-500/20 hover:border-cyan-500/50 border border-slate-700/50 rounded-lg transition-all duration-300 hover:text-cyan-400">
-                  <FaEnvelope className="text-xl" />
+                <a 
+                  href="https://www.facebook.com/profile.php?id=61590661097546" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="p-3 bg-slate-800/50 hover:bg-cyan-500/20 hover:border-cyan-500/50 border border-slate-700/50 rounded-lg transition-all duration-300 hover:text-cyan-400"
+                >
+                  <FaFacebook className="text-xl" />
                 </a>
               </div>
             </div>
@@ -123,66 +161,63 @@ function Contact() {
             onSubmit={handleSubmit}
             className="space-y-5"
           >
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
+            <div>
               <input
                 type="text"
                 name="name"
                 placeholder="Votre nom"
                 value={formData.name}
                 onChange={handleChange}
+                required
                 className="w-full bg-slate-800/50 border border-slate-700/50 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 focus:bg-slate-800/80 transition-all duration-300"
               />
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
+            <div>
               <input
                 type="email"
                 name="email"
                 placeholder="Votre email"
                 value={formData.email}
                 onChange={handleChange}
+                required
                 className="w-full bg-slate-800/50 border border-slate-700/50 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 focus:bg-slate-800/80 transition-all duration-300"
               />
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
+            <div>
               <textarea
                 name="message"
                 rows="5"
                 placeholder="Votre message"
                 value={formData.message}
                 onChange={handleChange}
+                required
                 className="w-full bg-slate-800/50 border border-slate-700/50 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 focus:bg-slate-800/80 transition-all duration-300 resize-none"
               ></textarea>
-            </motion.div>
+            </div>
 
             <motion.button
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              viewport={{ once: true }}
               whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(56, 189, 248, 0.5)" }}
               whileTap={{ scale: 0.98 }}
               type="submit"
-              className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all duration-300 shadow-lg"
+              disabled={status === 'sending'}
+              className={`w-full py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all duration-300 shadow-lg ${
+                status === 'success' 
+                  ? 'bg-green-500' 
+                  : status === 'error'
+                  ? 'bg-red-500'
+                  : 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600'
+              }`}
             >
-              <FaPaperPlane className="text-sm" />
-              Envoyer le message
+              {status === 'sending' && <FaSpinner className="animate-spin" />}
+              {status === 'success' && <FaCheckCircle />}
+              {status === 'idle' && <FaPaperPlane className="text-sm" />}
+              
+              {status === 'idle' && 'Envoyer le message'}
+              {status === 'sending' && 'Envoi en cours...'}
+              {status === 'success' && 'Message envoyé !'}
+              {status === 'error' && 'Erreur, réessayez'}
             </motion.button>
           </motion.form>
         </div>
