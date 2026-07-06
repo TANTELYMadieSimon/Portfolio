@@ -98,9 +98,14 @@ function Hero() {
               <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
             </a>
 
-            <button className="px-8 py-4 border border-slate-600 rounded-xl font-semibold hover:bg-slate-800/50 hover:border-cyan-500/50 transition-all duration-300 backdrop-blur-sm">
-              Télécharger CV
-            </button>
+            {/* Bouton Télécharger CV */}
+            <a
+              href="/CV_Simon_Madie.pdf"
+              download
+              className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 rounded-xl font-semibold transition-all duration-300 inline-flex items-center gap-2 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/50"
+            >
+              📄 Télécharger CV
+            </a>
           </motion.div>
 
           {/* Réseaux sociaux */}
@@ -110,45 +115,16 @@ function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {/* GitHub - externe */}
-            <a
-              href="https://github.com/TANTELYMadieSimon"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="p-3 bg-slate-800/50 hover:bg-cyan-500/20 hover:text-cyan-400 rounded-xl transition-all duration-300 border border-slate-700/50 hover:border-cyan-500/50 backdrop-blur-sm"
-            >
+            <a href="https://github.com/TANTELYMadieSimon" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="p-3 bg-slate-800/50 hover:bg-cyan-500/20 hover:text-cyan-400 rounded-xl transition-all duration-300 border border-slate-700/50 hover:border-cyan-500/50 backdrop-blur-sm">
               <FaGithub />
             </a>
-
-            {/* LinkedIn - externe */}
-            <a
-              href="https://www.linkedin.com/in/simon-madie-a0b752379/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="p-3 bg-slate-800/50 hover:bg-cyan-500/20 hover:text-cyan-400 rounded-xl transition-all duration-300 border border-slate-700/50 hover:border-cyan-500/50 backdrop-blur-sm"
-            >
+            <a href="https://www.linkedin.com/in/simon-madie-a0b752379/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="p-3 bg-slate-800/50 hover:bg-cyan-500/20 hover:text-cyan-400 rounded-xl transition-all duration-300 border border-slate-700/50 hover:border-cyan-500/50 backdrop-blur-sm">
               <FaLinkedin />
             </a>
-
-            {/* Facebook - externe */}
-            <a
-              href="https://www.facebook.com/profile.php?id=61590661097546"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              className="p-3 bg-slate-800/50 hover:bg-cyan-500/20 hover:text-cyan-400 rounded-xl transition-all duration-300 border border-slate-700/50 hover:border-cyan-500/50 backdrop-blur-sm"
-            >
+            <a href="https://www.facebook.com/profile.php?id=61590661097546" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="p-3 bg-slate-800/50 hover:bg-cyan-500/20 hover:text-cyan-400 rounded-xl transition-all duration-300 border border-slate-700/50 hover:border-cyan-500/50 backdrop-blur-sm">
               <FaFacebook />
             </a>
-
-            {/* Email - même page (SANS target="_blank") */}
-            <a
-              href="#contact"
-              aria-label="Contact"
-              className="p-3 bg-slate-800/50 hover:bg-cyan-500/20 hover:text-cyan-400 rounded-xl transition-all duration-300 border border-slate-700/50 hover:border-cyan-500/50 backdrop-blur-sm"
-            >
+            <a href="#contact" aria-label="Contact" className="p-3 bg-slate-800/50 hover:bg-cyan-500/20 hover:text-cyan-400 rounded-xl transition-all duration-300 border border-slate-700/50 hover:border-cyan-500/50 backdrop-blur-sm">
               <FaEnvelope />
             </a>
           </motion.div>
