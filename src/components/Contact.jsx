@@ -9,7 +9,7 @@ function Contact() {
     email: '',
     message: ''
   });
-  const [status, setStatus] = useState('idle'); // idle | sending | success | error
+  const [status, setStatus] = useState('idle'); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -68,7 +68,7 @@ function Contact() {
   ];
 
   return (
-    <section id="contact" className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-950 text-white py-20 overflow-hidden">
+    <section id="contact" className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-cyan-950 text-white py-24 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute -top-40 -right-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
         <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
@@ -148,6 +148,9 @@ function Contact() {
                   className="p-3 bg-slate-800/50 hover:bg-cyan-500/20 hover:border-cyan-500/50 border border-slate-700/50 rounded-lg transition-all duration-300 hover:text-cyan-400"
                 >
                   <FaFacebook className="text-xl" />
+                </a>
+                <a href="#contact" className="p-3 bg-slate-800 hover:bg-cyan-500/20 hover:text-cyan-400 rounded-lg transition-all duration-300 border border-slate-700 hover:border-cyan-500/50">
+                  <FaEnvelope className="text-xl" />
                 </a>
               </div>
             </div>

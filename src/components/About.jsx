@@ -1,34 +1,35 @@
 import { motion } from "framer-motion";
-import { FaCode, FaMobileAlt, FaDatabase, FaCheck } from "react-icons/fa";
+import { FaCode, FaMobileAlt, FaDatabase, FaServer } from "react-icons/fa";
 
 function About() {
   const features = [
     {
       icon: <FaCode className="text-4xl" />,
       title: "Web Development",
-      desc: "Applications web modernes avec React, Django et Node.js"
+      desc: "Applications web modernes avec React, Next.js, Django et Node.js"
     },
     {
       icon: <FaMobileAlt className="text-4xl" />,
       title: "Mobile Development",
-      desc: "Applications mobiles cross-platform avec Flutter"
+      desc: "Applications mobiles natives avec Android Studio (Java/Kotlin)"
     },
     {
-      icon: <FaDatabase className="text-4xl" />,
-      title: "Database Design",
-      desc: "Conception et optimisation de bases de données PostgreSQL"
+      icon: <FaServer className="text-4xl" />,
+      title: "DevOps & Backend",
+      desc: "Déploiement, CI/CD, API REST et bases de données PostgreSQL"
     }
   ];
 
   const skills = [
-    { name: "React/Next.js", level: 90 },
-    { name: "Django/Node.js", level: 85 },
-    { name: "Flutter", level: 80 },
+    { name: "React / Next.js", level: 90 },
+    { name: "Django / Node.js", level: 85 },
+    { name: "Android Studio", level: 80 },
     { name: "PostgreSQL", level: 75 }
   ];
 
   return (
-    <section id="about" className="min-h-screen bg-gradient-to-b from-slate-950 to-slate-900 text-white py-20 overflow-hidden">
+    <section id="about" className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-cyan-950 text-white flex items-center pt-20 overflow-hidden relative"
+    >
       <div className="max-w-7xl mx-auto px-6">
         
         <motion.div
@@ -42,7 +43,7 @@ function About() {
             À <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">propos</span>
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
-            Développeur passionné avec une expertise en création d'applications web et mobile performantes et élégantes.
+            Développeur passionné avec une expertise en création d'applications web, mobile et DevOps.
           </p>
         </motion.div>
 
@@ -79,10 +80,10 @@ function About() {
             <div>
               <h3 className="text-3xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Mon parcours</h3>
               <p className="text-slate-300 leading-8 mb-4">
-                Passionné par la technologie depuis toujours, j'ai développé une expertise solide en développement web et mobile. Je crée des solutions innovantes qui allient performance et design intuitif.
+                Passionné par la technologie depuis toujours, j'ai développé une expertise solide en développement web, mobile et DevOps. Je crée des solutions innovantes qui allient performance et design intuitif.
               </p>
               <p className="text-slate-300 leading-8">
-                Actuellement, je me concentre sur les technologies modernes comme React, Node.js, Django et Flutter pour offrir des applications complètes et scalables.
+                Actuellement, je me concentre sur les technologies modernes comme React, Next.js, Node.js, Django, Android Studio pour offrir des applications complètes et scalables.
               </p>
             </div>
             <div className="space-y-5">
@@ -96,7 +97,7 @@ function About() {
                 >
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-slate-300 font-medium flex items-center gap-2">
-                      <FaCheck className="text-cyan-400" />
+                      <span className="text-cyan-400">✓</span>
                       {skill.name}
                     </span>
                     <span className="text-cyan-400 font-bold">{skill.level}%</span>
